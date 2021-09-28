@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.MaintainerMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.MaintainerModel">
+
+    <id column="MaintainerId" property="maintainerId" />
+    <result column="MaintainerName" property="maintainerName" />
+    <result column="MaintainerAddress" property="maintainerAddress" />
+    <result column="MaintainerContact" property="maintainerContact" />
+    <result column="MaintainerTelephone" property="maintainerTelephone" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from Maintainer
+    where MaintainerId = #{maintainerId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.MaintainerModel">
+
+    insert into Maintainer (MaintainerId, MaintainerName, MaintainerAddress, 
+      MaintainerContact, MaintainerTelephone)
+    values (#{maintainerId}, #{maintainerName}, #{maintainerAddress}, 
+      #{maintainerContact}, #{maintainerTelephone})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.MaintainerModel">
+
+    update Maintainer
+    set MaintainerName = #{maintainerName},
+      MaintainerAddress = #{maintainerAddress},
+      MaintainerContact = #{maintainerContact},
+      MaintainerTelephone = #{maintainerTelephone}
+    where MaintainerId = #{maintainerId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select MaintainerId, MaintainerName, MaintainerAddress, MaintainerContact, MaintainerTelephone
+    from Maintainer
+    where MaintainerId = #{maintainerId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select MaintainerId, MaintainerName, MaintainerAddress, MaintainerContact, MaintainerTelephone
+    from Maintainer
+  </select>
+</mapper>

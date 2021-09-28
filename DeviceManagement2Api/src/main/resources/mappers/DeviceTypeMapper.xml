@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.DeviceTypeMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.DeviceTypeModel">
+
+    <id column="DeviceTypeId" property="deviceTypeId" />
+    <result column="DeviceTypeName" property="deviceTypeName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from DeviceType
+    where DeviceTypeId = #{deviceTypeId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceTypeModel">
+
+    insert into DeviceType (DeviceTypeId, DeviceTypeName)
+    values (#{deviceTypeId}, #{deviceTypeName})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceTypeModel">
+
+    update DeviceType
+    set DeviceTypeName = #{deviceTypeName}
+    where DeviceTypeId = #{deviceTypeId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select DeviceTypeId, DeviceTypeName
+    from DeviceType
+    where DeviceTypeId = #{deviceTypeId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select DeviceTypeId, DeviceTypeName
+    from DeviceType
+  </select>
+</mapper>

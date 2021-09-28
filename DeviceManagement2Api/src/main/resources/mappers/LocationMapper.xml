@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.LocationMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.LocationModel">
+
+    <id column="LocationId" property="locationId" />
+    <result column="LocationName" property="locationName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from Location
+    where LocationId = #{locationId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.LocationModel">
+
+    insert into Location (LocationId, LocationName)
+    values (#{locationId}, #{locationName})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.LocationModel">
+
+    update Location
+    set LocationName = #{locationName}
+    where LocationId = #{locationId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select LocationId, LocationName
+    from Location
+    where LocationId = #{locationId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select LocationId, LocationName
+    from Location
+  </select>
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.UserMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.UserModel">
+
+    <id column="UserId" property="userId" />
+    <result column="UserName" property="userName" />
+    <result column="UserPasswordHash" property="userPasswordHash" />
+    <result column="UserRealName" property="userRealName" />
+    <result column="UserAge" property="userAge" />
+    <result column="UserGender" property="userGender" />
+    <result column="UserTypeId" property="userTypeId" />
+    <association property="userType"
+                 javaType="site.aoba.devicemanagement2api.infrastructure.models.UserTypeModel"
+                 column="UserTypeId"
+                 select="site.aoba.devicemanagement2api.infrastructure.mappers.UserTypeMapper.selectByPrimaryKey"/>
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from User
+    where UserId = #{userId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.UserModel">
+
+    insert into User (UserId, UserName,
+      UserRealName, UserAge, UserGender, 
+      UserTypeId)
+    values (#{userId}, #{userName},
+      #{userRealName}, #{userAge}, #{userGender}, 
+      #{userTypeId})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.UserModel">
+
+    update User
+    set UserName = #{userName},
+      UserRealName = #{userRealName},
+      UserAge = #{userAge},
+      UserGender = #{userGender},
+      UserTypeId = #{userTypeId}
+    where UserId = #{userId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select UserId, UserName, UserPasswordHash, UserRealName, UserAge, UserGender, UserTypeId
+    from User
+    where UserId = #{userId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select UserId, UserName, UserPasswordHash, UserRealName, UserAge, UserGender, UserTypeId
+    from User
+  </select>
+  <update id="updatePasswordHashByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.UserModel">
+
+    update User
+    set UserPasswordHash = #{userPasswordHash}
+    where UserId = #{userId}
+  </update>
+</mapper>

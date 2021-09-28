@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.DeviceProviderMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.DeviceProviderModel">
+
+    <id column="DeviceProviderId" property="deviceProviderId" />
+    <result column="DeviceProviderName" property="deviceProviderName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from DeviceProvider
+    where DeviceProviderId = #{deviceProviderId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceProviderModel">
+
+    insert into DeviceProvider (DeviceProviderId, DeviceProviderName
+      )
+    values (#{deviceProviderId}, #{deviceProviderName}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceProviderModel">
+
+    update DeviceProvider
+    set DeviceProviderName = #{deviceProviderName}
+    where DeviceProviderId = #{deviceProviderId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select DeviceProviderId, DeviceProviderName
+    from DeviceProvider
+    where DeviceProviderId = #{deviceProviderId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select DeviceProviderId, DeviceProviderName
+    from DeviceProvider
+  </select>
+</mapper>

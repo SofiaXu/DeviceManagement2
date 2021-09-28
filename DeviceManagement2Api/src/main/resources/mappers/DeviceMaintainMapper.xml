@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.DeviceMaintainMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.DeviceMaintainModel">
+
+    <id column="DeviceMaintainId" property="deviceMaintainId" />
+    <result column="DeviceMaintainReason" property="deviceMaintainReason" />
+    <result column="DeviceMaintainStartDate" property="deviceMaintainStartDate" />
+    <result column="DeviceMaintainEndDate" property="deviceMaintainEndDate" />
+    <result column="DeviceMaintainEmployeeId" property="deviceMaintainEmployeeId" />
+    <result column="DeviceId" property="deviceId" />
+    <result column="DeviceMaintainerId" property="deviceMaintainerId" />
+    <result column="DeviceMaintainPrice" property="deviceMaintainPrice" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from DeviceMaintain
+    where DeviceMaintainId = #{deviceMaintainId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceMaintainModel">
+
+    insert into DeviceMaintain (DeviceMaintainId, DeviceMaintainReason, 
+      DeviceMaintainStartDate, DeviceMaintainEndDate, 
+      DeviceMaintainEmployeeId, DeviceId, DeviceMaintainerId, 
+      DeviceMaintainPrice)
+    values (#{deviceMaintainId}, #{deviceMaintainReason}, 
+      #{deviceMaintainStartDate}, #{deviceMaintainEndDate}, 
+      #{deviceMaintainEmployeeId}, #{deviceId}, #{deviceMaintainerId}, 
+      #{deviceMaintainPrice})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceMaintainModel">
+
+    update DeviceMaintain
+    set DeviceMaintainReason = #{deviceMaintainReason},
+      DeviceMaintainStartDate = #{deviceMaintainStartDate},
+      DeviceMaintainEndDate = #{deviceMaintainEndDate},
+      DeviceMaintainEmployeeId = #{deviceMaintainEmployeeId},
+      DeviceId = #{deviceId},
+      DeviceMaintainerId = #{deviceMaintainerId},
+      DeviceMaintainPrice = #{deviceMaintainPrice}
+    where DeviceMaintainId = #{deviceMaintainId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select DeviceMaintainId, DeviceMaintainReason, DeviceMaintainStartDate, DeviceMaintainEndDate, 
+    DeviceMaintainEmployeeId, DeviceId, DeviceMaintainerId, DeviceMaintainPrice
+    from DeviceMaintain
+    where DeviceMaintainId = #{deviceMaintainId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select DeviceMaintainId, DeviceMaintainReason, DeviceMaintainStartDate, DeviceMaintainEndDate, 
+    DeviceMaintainEmployeeId, DeviceId, DeviceMaintainerId, DeviceMaintainPrice
+    from DeviceMaintain
+  </select>
+</mapper>

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.EmployeeMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.EmployeeModel">
+
+    <id column="EmployeeId" property="employeeId" />
+    <result column="EmployeeName" property="employeeName" />
+    <result column="EmployeeGender" property="employeeGender" />
+    <result column="EmployeeBirthday" property="employeeBirthday" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from Employee
+    where EmployeeId = #{employeeId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.EmployeeModel">
+
+    insert into Employee (EmployeeId, EmployeeName, EmployeeGender, 
+      EmployeeBirthday)
+    values (#{employeeId}, #{employeeName}, #{employeeGender}, 
+      #{employeeBirthday})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.EmployeeModel">
+
+    update Employee
+    set EmployeeName = #{employeeName},
+      EmployeeGender = #{employeeGender},
+      EmployeeBirthday = #{employeeBirthday}
+    where EmployeeId = #{employeeId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select EmployeeId, EmployeeName, EmployeeGender, EmployeeBirthday
+    from Employee
+    where EmployeeId = #{employeeId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select EmployeeId, EmployeeName, EmployeeGender, EmployeeBirthday
+    from Employee
+  </select>
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.DeviceStatusMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.DeviceStatusModel">
+
+    <id column="DeviceStatusId" property="deviceStatusId" />
+    <result column="DeviceStatusName" property="deviceStatusName" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from DeviceStatus
+    where DeviceStatusId = #{deviceStatusId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceStatusModel">
+
+    insert into DeviceStatus (DeviceStatusId, DeviceStatusName)
+    values (#{deviceStatusId}, #{deviceStatusName})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceStatusModel">
+
+    update DeviceStatus
+    set DeviceStatusName = #{deviceStatusName}
+    where DeviceStatusId = #{deviceStatusId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select DeviceStatusId, DeviceStatusName
+    from DeviceStatus
+    where DeviceStatusId = #{deviceStatusId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select DeviceStatusId, DeviceStatusName
+    from DeviceStatus
+  </select>
+</mapper>

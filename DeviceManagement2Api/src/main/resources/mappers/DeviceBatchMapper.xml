@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.DeviceBatchMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.DeviceBatchModel">
+
+    <id column="DeviceBatchId" property="deviceBatchId" />
+    <result column="DeviceBaseInformationId" property="deviceBaseInformationId" />
+    <result column="DeviceProviderId" property="deviceProviderId" />
+    <result column="DevicePurchaserId" property="devicePurchaserId" />
+    <result column="DevicePurchaseDate" property="devicePurchaseDate" />
+    <result column="DeviceBatchNumber" property="deviceBatchNumber" />
+    <result column="DeviceCount" property="deviceCount" />
+    <result column="DevicePrice" property="devicePrice" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from DeviceBatch
+    where DeviceBatchId = #{deviceBatchId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceBatchModel">
+
+    insert into DeviceBatch (DeviceBaseInformationId,
+      DeviceProviderId, DevicePurchaserId, DevicePurchaseDate, 
+      DeviceBatchNumber, DeviceCount, DevicePrice
+      )
+    values (#{deviceBaseInformationId},
+      #{deviceProviderId}, #{devicePurchaserId}, #{devicePurchaseDate}, 
+      #{deviceBatchNumber}, #{deviceCount}, #{devicePrice}
+      )
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceBatchModel">
+
+    update DeviceBatch
+    set DeviceBaseInformationId = #{deviceBaseinformationId},
+      DeviceProviderId = #{deviceProviderId},
+      DevicePurchaserId = #{devicePurchaserId},
+      DevicePurchaseDate = #{devicePurchaseDate},
+      DeviceBatchNumber = #{deviceBatchNumber},
+      DeviceCount = #{deviceCount},
+      DevicePrice = #{devicePrice}
+    where DeviceBatchId = #{deviceBatchId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select DeviceBatchId, DeviceBaseInformationId, DeviceProviderId, DevicePurchaserId, 
+    DevicePurchaseDate, DeviceBatchNumber, DeviceCount, DevicePrice
+    from DeviceBatch
+    where DeviceBatchId = #{deviceBatchId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select DeviceBatchId, DeviceBaseInformationId, DeviceProviderId, DevicePurchaserId, 
+    DevicePurchaseDate, DeviceBatchNumber, DeviceCount, DevicePrice
+    from DeviceBatch
+  </select>
+</mapper>

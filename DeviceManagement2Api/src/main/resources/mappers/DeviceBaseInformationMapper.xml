@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.DeviceBaseInformationMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.DeviceBaseInformationModel">
+
+    <id column="Id" property="id" />
+    <result column="DeviceTypeId" property="deviceTypeId" />
+    <result column="DeviceName" property="deviceName" />
+    <result column="DeviceModel" property="deviceModel" />
+    <result column="DeviceCount" property="deviceCount" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from DeviceBaseInformation
+    where Id = #{id}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceBaseInformationModel">
+
+    insert into DeviceBaseInformation (DeviceTypeId, DeviceName,
+      DeviceModel, DeviceCount)
+    values (#{deviceTypeId}, #{deviceName},
+      #{deviceModel}, #{deviceCount})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.DeviceBaseInformationModel">
+
+    update DeviceBaseInformation
+    set DeviceTypeId = #{deviceTypeId},
+      DeviceName = #{deviceName},
+      DeviceModel = #{deviceModel},
+      DeviceCount = #{deviceCount}
+    where Id = #{id}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select Id, DeviceTypeId, DeviceName, DeviceModel, DeviceCount
+    from DeviceBaseInformation
+    where Id = #{id}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select Id, DeviceTypeId, DeviceName, DeviceModel, DeviceCount
+    from DeviceBaseInformation
+  </select>
+  <select id="countByDeviceTypeId" parameterType="java.lang.Long" resultType="java.lang.Integer">
+
+    select count(*)
+    from DeviceBaseInformation
+    where DeviceTypeId = #{id}
+  </select>
+</mapper>

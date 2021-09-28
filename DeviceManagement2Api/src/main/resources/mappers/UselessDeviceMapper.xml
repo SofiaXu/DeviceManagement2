@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="site.aoba.devicemanagement2api.infrastructure.mappers.UselessDeviceMapper">
+  <resultMap id="BaseResultMap" type="site.aoba.devicemanagement2api.infrastructure.models.UselessDeviceModel">
+
+    <id column="UselessDeviceId" property="uselessDeviceId" />
+    <result column="DeviceId" property="deviceId" />
+    <result column="UselessDate" property="uselessDate" />
+    <result column="UselessReason" property="uselessReason" />
+    <result column="UselessReporterId" property="uselessReporterId" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+
+    delete from UselessDevice
+    where UselessDeviceId = #{uselessDeviceId}
+  </delete>
+  <insert id="insert" parameterType="site.aoba.devicemanagement2api.infrastructure.models.UselessDeviceModel">
+
+    insert into UselessDevice (UselessDeviceId, DeviceId, UselessDate, 
+      UselessReason, UselessReporterId)
+    values (#{uselessDeviceId}, #{deviceId}, #{uselessDate}, 
+      #{uselessReason}, #{uselessReporterId})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="site.aoba.devicemanagement2api.infrastructure.models.UselessDeviceModel">
+
+    update UselessDevice
+    set DeviceId = #{deviceId},
+      UselessDate = #{uselessDate},
+      UselessReason = #{uselessReason},
+      UselessReporterId = #{uselessReporterId}
+    where UselessDeviceId = #{uselessDeviceId}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+
+    select UselessDeviceId, DeviceId, UselessDate, UselessReason, UselessReporterId
+    from UselessDevice
+    where UselessDeviceId = #{uselessDeviceId}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+
+    select UselessDeviceId, DeviceId, UselessDate, UselessReason, UselessReporterId
+    from UselessDevice
+  </select>
+</mapper>
